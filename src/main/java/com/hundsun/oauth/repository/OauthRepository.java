@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hundsun.oauth.security.OauthClientDetails;
 
-public interface OauthRepository extends Repository {
+public interface OauthRepository extends Repository<OauthClientDetails> {
 
 	OauthClientDetails findOauthClientDetails(String clientId);
 

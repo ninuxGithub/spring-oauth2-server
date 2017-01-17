@@ -1,7 +1,9 @@
 package com.hundsun.oauth.repository;
 
+import java.util.Collection;
 import java.util.List;
 
+import com.hundsun.oauth.domain.Privilege;
 import com.hundsun.oauth.domain.User;
 
 /**
@@ -13,7 +15,7 @@ import com.hundsun.oauth.domain.User;
  * @UserRepository
  *
  */
-public interface UserRepository extends Repository {
+public interface UserRepository extends Repository<User> {
 
 	/**
 	 * 更加guid 查找对应的用户
@@ -41,5 +43,9 @@ public interface UserRepository extends Repository {
 	User findUserById(Long id);
 
 	User findUserByNameAndPassword(String username, String password);
+
+	void deleteUserById(Long id);
+
+	Collection<? extends Privilege> findPrivilege(Long id);
 
 }

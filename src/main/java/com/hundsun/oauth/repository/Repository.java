@@ -1,5 +1,7 @@
 package com.hundsun.oauth.repository;
 
+import com.hundsun.oauth.domain.Pagination;
+
 /**
  * @function:标记型接口
  * @spring-security-oathority :项目名称
@@ -8,6 +10,8 @@ package com.hundsun.oauth.repository;
  * @Repository
  *
  */
-public interface Repository {
+public interface Repository <T>{
+	
+	public Pagination<T> paginationBySql(String countSql, String pageListSql, Pagination<T> pagination) ;
 
 }

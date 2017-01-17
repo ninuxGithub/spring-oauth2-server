@@ -36,7 +36,7 @@ public class UserDto implements Serializable {
 		this.username = user.getUsername();
 		this.phone = user.getPhone();
 		this.email = user.getEmail();
-		this.privileges = user.getPriviliges();
+		this.privileges = user.getPrivileges();
 		this.createTime = user.getCreateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
 

@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 
+import com.hundsun.oauth.domain.Pagination;
+import com.hundsun.oauth.domain.Privilege;
 import com.hundsun.oauth.domain.User;
 import com.hundsun.oauth.dto.UserDto;
 import com.hundsun.oauth.dto.UserFormDto;
@@ -111,15 +113,28 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(UserFormDto formDto) {
 		User user = formDto.newUser();
-		
-		System.out.println("update user:"+ user);
 		userRepository.updateUser(user);
 	}
 
 	@Override
 	public User findUserByNameAndPassword(String username, String password) {
-		
 		return userRepository.findUserByNameAndPassword(username,password);
+	}
+
+	@Override
+	public void deleteUserById(Long id) {
+		userRepository.deleteUserById(id);
+	}
+
+	@Override
+	public Pagination<User> paginationBySql(String countSql, String pageListSql, Pagination<User> pagination) {
+		return userRepository.paginationBySql(countSql, pageListSql, pagination);
+	}
+
+	@Override
+	public Collection<? extends Privilege> findPrivilege(Long id) {
+		// TODO Auto-generated method stub
+		return userRepository.findPrivilege(id);
 	}
 
 }

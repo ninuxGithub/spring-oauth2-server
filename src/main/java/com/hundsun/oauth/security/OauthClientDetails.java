@@ -2,6 +2,8 @@ package com.hundsun.oauth.security;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.hundsun.oauth.utils.DateUtils;
 
@@ -50,6 +52,8 @@ public class OauthClientDetails implements Serializable {
 
 	/** 自动授权 **/
 	private String autoApprove;
+
+	private List<String> privileges = new ArrayList<String>();
 
 	public OauthClientDetails() {
 	}
@@ -164,6 +168,16 @@ public class OauthClientDetails implements Serializable {
 
 	public void setAutoApprove(String autoApprove) {
 		this.autoApprove = autoApprove;
+	}
+
+	
+
+	public List<String> getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(List<String> privileges) {
+		this.privileges = privileges;
 	}
 
 	@Override

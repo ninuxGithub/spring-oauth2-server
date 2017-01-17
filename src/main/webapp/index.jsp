@@ -4,18 +4,42 @@
 <html>
 <head>
 <title>Home</title>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"
-	scope="application" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"	scope="application" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.1.1.min.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$('#btn').click(function(){
+			$.post(
+				"http://localhost:8080/spring-oauth2-server/mobile/user_info",
+				{"access_token":"7568af9a-6027-4c6b-b87c-4a691ab643c1"},
+				function(data){
+					
+					$('#data').html(JSON.stringify(data));
+				}				
+			);
+			
+		});
+		
+	});
+</script>
 
 </head>
 <body>
 	<h2>
 		Spring Security OAuth2 <small class="badge" title="Version">1.0</small>
 	</h2>
+	
+	<div>
+		<span id="data"></span>
+	</div>
 
 	<p>
 		<a href="${contextPath}/toLogin">Normal login</a>
 	</p>
+	<div>
+		<div id="btn" class="btn btn-primary">发送请求</div>
+	</div>
 
 	<div>
 		操作说明: <span style="color: red;">${param.errMsg }</span>

@@ -31,7 +31,7 @@ public class UserJsonDto implements Serializable {
 		this.phone = user.getPhone();
 		this.email = user.getEmail();
 
-		final List<Privilege> privilegeList = user.getPriviliges();
+		final List<Privilege> privilegeList = user.getPrivileges();
 		for (Privilege privilege : privilegeList) {
 			this.privileges.add(privilege.name());
 		}

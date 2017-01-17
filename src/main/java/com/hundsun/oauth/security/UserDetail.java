@@ -17,7 +17,7 @@ public class UserDetail implements UserDetails {
 
 	protected static final String ROLE_PREFFIX = "ROLE_";
 	protected static final GrantedAuthority DEFAULT_USER_ROLE = new SimpleGrantedAuthority(
-			ROLE_PREFFIX + Privilege.USER.name());
+			ROLE_PREFFIX + Privilege.MOBILE.name());
 
 	protected User user;
 
@@ -38,7 +38,7 @@ public class UserDetail implements UserDetails {
 			grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFFIX + Privilege.MOBILE.name()));
 			grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFFIX + Privilege.UNITY.name()));
 		} else {
-			List<Privilege> list = user.getPriviliges();
+			List<Privilege> list = user.getPrivileges();
 			for (Privilege privilege : list) {
 				grantedAuthorities.add(new SimpleGrantedAuthority(ROLE_PREFFIX + privilege.name()));
 			}

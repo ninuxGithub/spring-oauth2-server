@@ -42,7 +42,6 @@ public class HttpClientUtil {
 		for (Map.Entry<String, String> entry : params.entrySet()) {
 			String key = entry.getKey().toString();
 			String value = entry.getValue().toString();
-			System.out.println("key=" + key + " value=" + value);
 			NameValuePair pair = new BasicNameValuePair(key, value);
 			list.add(pair);
 		}
@@ -95,7 +94,6 @@ public class HttpClientUtil {
 		for (Map.Entry<String, String> entry : params.entrySet()) {
 			String key = entry.getKey().toString();
 			String value = entry.getValue().toString();
-			//System.out.println("key=" + key + " value=" + value);
 			NameValuePair pair = new BasicNameValuePair(key, value);
 			list.add(pair);
 		}

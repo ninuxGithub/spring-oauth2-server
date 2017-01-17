@@ -14,7 +14,7 @@ import com.hundsun.oauth.rowmapper.OauthClientDetailsRowMapper;
 import com.hundsun.oauth.security.OauthClientDetails;
 
 @Repository("oauthRepositoryImpl")
-public class OauthRepositoryImpl implements OauthRepository {
+public class OauthRepositoryImpl extends RepositoryImpl<OauthClientDetails> implements OauthRepository {
 	private static OauthClientDetailsRowMapper oauthClientDetailsRowMapper = new OauthClientDetailsRowMapper();
 
 	@Autowired

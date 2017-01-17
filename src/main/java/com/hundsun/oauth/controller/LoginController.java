@@ -76,12 +76,10 @@ public class LoginController {
 			if (null != userDetail && null != user) {
 				String user_detail_password = userDetail.getPassword();
 				String md5_password = PasswordHandler.md5(password);
-				System.out.println(user_detail_password + ":" + md5_password);
 				if (null != user_detail_password && null != md5_password) {
 					// 和数据库的密码进行对比
 					if (md5_password.equals(user_detail_password)) {
 						request.getSession().setAttribute("login_user", userDetail);
-						System.out.println(userDetail);
 						// 加载client 信息：用户需要和client 进行关联
 						OauthClientDetails oauthClientDetails=null;
 						if(StringUtils.isNotBlank(user.getClientId())){

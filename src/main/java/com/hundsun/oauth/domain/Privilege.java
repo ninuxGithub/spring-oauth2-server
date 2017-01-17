@@ -1,5 +1,11 @@
 package com.hundsun.oauth.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONArray;
+
 /**
  * @function:权限的控制
  * @spring-oauth2-server :项目名称
@@ -13,7 +19,7 @@ package com.hundsun.oauth.domain;
  *
  */
 public enum Privilege {
-	USER("USER", "user-resource"), // Default privilege
+	//USER("USER", "user-resource"), // Default privilege
 	ADMIN("ADMIN", "admin-resource"), 
 	UNITY("UNITY", "unity-resource"), 
 	MOBILE("MOBILE", "mobile-resource");
@@ -28,6 +34,27 @@ public enum Privilege {
 		this.name = name;
 		this.sourceId = sourceId;
 	}
+	
+	public static List<Privilege> getAllPrivileges(){
+		List<Privilege> list = new ArrayList<>();
+		for(Privilege p: Privilege.values()){
+			list.add(p);
+		}
+		return list;
+	}
+	
+	
+	public static String toJson(List<Tag> tags){
+		JSONArray ja = JSONArray.fromObject(tags);
+		return ja.toString();
+	}
+	
+	public static String toJson(Map<String,String> map){
+		JSONArray ja = JSONArray.fromObject(map);
+		return ja.toString();
+	}
+	
+	
 
 	public String getName() {
 		return name;

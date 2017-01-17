@@ -71,7 +71,7 @@ public class User implements Serializable {
 	private Date lastLoginTime;
 
 	/** 用户权限 **/
-	private List<Privilege> priviliges = new ArrayList<>();
+	private List<Privilege> privileges = new ArrayList<>();
 
 	/** 用户联系方式 **/
 	private String phone;
@@ -126,12 +126,14 @@ public class User implements Serializable {
 		this.lastLoginTime = lastLoginTime;
 	}
 
-	public List<Privilege> getPriviliges() {
-		return priviliges;
+	
+
+	public List<Privilege> getPrivileges() {
+		return privileges;
 	}
 
-	public void setPriviliges(List<Privilege> priviliges) {
-		this.priviliges = priviliges;
+	public void setPrivileges(List<Privilege> privileges) {
+		this.privileges = privileges;
 	}
 
 	public static long getSerialversionuid() {
@@ -178,7 +180,7 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [id=" + id + ", archived=" + archived + ", guid=" + guid + ", createTime=" + createTime
 				+ ", clientId=" + clientId + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", defaultUser=" + defaultUser + ", lastLoginTime=" + lastLoginTime + ", priviliges=" + priviliges
+				+ ", defaultUser=" + defaultUser + ", lastLoginTime=" + lastLoginTime + ", priviliges=" + privileges
 				+ ", phone=" + phone + "]";
 	}
 

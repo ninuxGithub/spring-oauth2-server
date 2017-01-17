@@ -46,11 +46,8 @@ public class CharacterEncodingAndIpFilter extends CharacterEncodingFilter {
 		}
 
 		if (null != userDetail && StringUtils.isNotBlank(access_token)) {
-			System.err.println("set access_token into request and session scope " + access_token);
 			request.setAttribute("access_token", access_token);
-
 			session.setAttribute("access_token", access_token);
-
 		}
 		super.doFilterInternal(request, response, filterChain);
 	}

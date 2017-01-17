@@ -1,9 +1,12 @@
 package com.hundsun.oauth.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.hundsun.oauth.domain.Pagination;
+import com.hundsun.oauth.domain.Privilege;
 import com.hundsun.oauth.domain.User;
 import com.hundsun.oauth.dto.UserFormDto;
 import com.hundsun.oauth.dto.UserJsonDto;
@@ -58,5 +61,11 @@ public interface UserService extends UserDetailsService {
 	void updateUser(UserFormDto formDto);
 
 	User findUserByNameAndPassword(String username, String password);
+
+	void deleteUserById(Long id);
+	
+	public Pagination<User> paginationBySql(String countSql, String pageListSql, Pagination<User> pagination);
+
+	Collection<? extends Privilege> findPrivilege(Long id);
 
 }

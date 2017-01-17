@@ -9,7 +9,8 @@
     <!--console-->
     <appender name="Console" class="org.apache.log4j.ConsoleAppender">
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d %p [%c] - %m%n"/>
+<!--             <param name="ConversionPattern" value="%d %p [%c]-[%l] - %m%n"/> -->
+            <param name="ConversionPattern" value="%d %p [%l] - %m%n"/>
         </layout>
     </appender>
 
@@ -22,9 +23,11 @@
 
 
     <root>
-        <level value="debug"/>
+        <level value="info"/>
         <appender-ref ref="Console"/>
     </root>
+    
+    
    <!--  <root>
         <level value="info"/>
         <appender-ref ref="Console"/>

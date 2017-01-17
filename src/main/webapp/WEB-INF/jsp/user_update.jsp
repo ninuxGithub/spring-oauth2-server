@@ -12,74 +12,57 @@
 
 	<h2>Update User</h2>
 
-	<form:form action="${pageContext.request.contextPath}/user/update" commandName="formDto" cssClass="form-horizontal">
+	<form:form action="${pageContext.request.contextPath}/user/update"
+		commandName="formDto" cssClass="form-horizontal">
 		<div class="form-group">
-			<label class="col-sm-2 control-label">ClientId<em
-				class="text-danger">*</em></label>
-
+			<label class="col-sm-2 control-label">ClientId<em class="text-danger">*</em></label>
 			<div class="col-sm-10">
 				<form:input path="clientId" cssClass="form-control"
 					placeholder="Type clientid (在client_details注册页面注册之后的client_id)" required="required" />
 				<p class="help-block">ClientId, unique.</p>
 			</div>
 		</div>
+		
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Username<em
-				class="text-danger">*</em></label>
-
+			<label class="col-sm-2 control-label">Username<em class="text-danger">*</em></label>
 			<div class="col-sm-10">
-				<form:input path="username" cssClass="form-control"
-					placeholder="Type username" required="required" />
-
+				<form:input path="username" cssClass="form-control" placeholder="Type username" required="required" />
 				<p class="help-block">Username, unique.</p>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Password<em
-				class="text-danger">*</em></label>
-
+			<label class="col-sm-2 control-label">Password<em class="text-danger">*</em></label>
 			<div class="col-sm-10">
-				<form:password path="password" cssClass="form-control"
-					placeholder="Type password" required="required" />
-
+				<form:password path="password" cssClass="form-control" placeholder="Type password" required="required" />
 				<p class="help-block">Password, required.</p>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Privileges<em
-				class="text-danger">*</em></label>
-
+			<label class="col-sm-2 control-label">Privileges<em class="text-danger">*</em></label>
 			<div class="col-sm-10">
-				<label class="checkbox-inline"> 
-					<form:checkbox path="privileges" value="MOBILE" /> MOBILE
-				</label> 
-				<label class="checkbox-inline"> 
-					<form:checkbox path="privileges" value="UNITY" /> UNITY
-				</label>
-				<label class="checkbox-inline"> 
-					<form:checkbox path="privileges" value="ADMIN" /> ADMIN
-				</label>
+				<div class="col-sm-10">
+					<c:forEach var="tag" items="${tags}">
+						<label class="checkbox-inline"> 
+							<form:checkbox path="privileges" value="${tag.name}" /> ${tag.name}
+						</label>
+					</c:forEach>
+					<p class="help-block">Select Privilege(s).</p>
+				</div>
 				<p class="help-block">Select Privilege(s).</p>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Phone</label>
-
 			<div class="col-sm-10">
-				<form:input path="phone" cssClass="form-control"
-					placeholder="Type phone" />
-
+				<form:input path="phone" cssClass="form-control" placeholder="Type phone" />
 				<p class="help-block">User phone, optional.</p>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Email</label>
-
 			<div class="col-sm-10">
-				<form:input path="email" cssClass="form-control"
-					placeholder="Type email" />
-
+				<form:input path="email" cssClass="form-control" placeholder="Type email" />
 				<p class="help-block">User email, optional.</p>
 			</div>
 		</div>
@@ -100,8 +83,8 @@
 			</div>
 		</div>
 		<form:hidden path="id" />
-		<form:hidden path="guid"/>
-		
+		<form:hidden path="guid" />
+
 	</form:form>
 
 </body>

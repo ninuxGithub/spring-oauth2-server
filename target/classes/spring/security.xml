@@ -10,7 +10,7 @@
 
 	<!-- Spring Security + OAuth 的主配置文件 -->
 	<!-- 若需要调试, 可将debug 标签注释取消 -->
-	<debug />
+<!-- 	<debug /> -->
 
 	<!-- 静态资源, 忽略 -->
 	<!--static url pattern -->

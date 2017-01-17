@@ -39,6 +39,8 @@ public class OauthClientDetailsDto implements Serializable {
 	private String additionalInformation;
 
 	private boolean trusted;
+	
+	private List<String> privileges = new ArrayList<String>();
 
 	public OauthClientDetailsDto() {
 	}
@@ -60,6 +62,26 @@ public class OauthClientDetailsDto implements Serializable {
 		this.additionalInformation = clientDetails.getAdditionalInformation();
 		this.trusted = clientDetails.getTrusted();
 		this.authorizedGrantTypes = clientDetails.getAuthorizedGrantTypes();
+		if(StringUtils.isNotBlank(this.resourceIds)){
+			String[] strs = resourceIds.split(",");
+			List<String> list = new ArrayList<>();
+			for (String s : strs) {
+				if(StringUtils.isNotBlank(s)){
+					list.add(s);
+				}
+			}
+			this.privileges.addAll(list);
+		}
+	}
+	
+
+
+	public List<String> getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(List<String> privileges) {
+		this.privileges = privileges;
 	}
 
 	public String getCreateTime() {
@@ -223,6 +245,18 @@ public class OauthClientDetailsDto implements Serializable {
 		clientDetails.setAuthorizedGrantTypes(authorizedGrantTypes);
 		clientDetails.setAccessTokenValidity(accessTokenValidity);
 		clientDetails.setRefreshTokenValidity(refreshTokenValidity);
+		
+		if(null != privileges && ! privileges.isEmpty()){
+			String resources = "";
+			for(int i=0; i<privileges.size(); i++){
+				if(i != privileges.size()-1){
+					resources +=privileges.get(i)+",";
+				}else{
+					resources +=privileges.get(i);
+				}
+			}
+			clientDetails.setResourceIds(resources);
+		}
 
 		if (StringUtils.isNotEmpty(webServerRedirectUri)) {
 			clientDetails.setWebServerRedirectUri(webServerRedirectUri);

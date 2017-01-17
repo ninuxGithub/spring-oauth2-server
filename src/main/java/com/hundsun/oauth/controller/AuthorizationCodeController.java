@@ -172,9 +172,7 @@ public class AuthorizationCodeController {
 			final Object principal = authentication.getPrincipal();
 			if (null != principal && principal instanceof UserDetail) {
 				UserDetail userDetails = (UserDetail) principal;
-				System.out.println("principal is :" + principal);
 				session.setAttribute("login_user", userDetails);
-
 			}
 			return "access_token_result";
 		}

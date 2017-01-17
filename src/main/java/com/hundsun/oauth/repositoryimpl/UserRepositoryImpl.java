@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,7 @@ import com.hundsun.oauth.repository.UserRepository;
 import com.hundsun.oauth.rowmapper.UserRowMapper;
 
 @Repository("userRepositoryImpl")
-public class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl extends RepositoryImpl<User> implements UserRepository {
 
 	private static UserRowMapper userRowMapper = new UserRowMapper();
 
@@ -33,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
 		User user = null;
 		if (null != list && !list.isEmpty()) {
 			user = list.get(0);
-			user.getPriviliges().addAll(findPrivilege(user.getId()));
+			user.getPrivileges().addAll(findPrivilege(user.getId()));
 		}
 		return user;
 	}
@@ -45,7 +46,7 @@ public class UserRepositoryImpl implements UserRepository {
 	 *            用户ID --Long 类型
 	 * @return 该用户的权限集合
 	 */
-	private Collection<Privilege> findPrivilege(Long userId) {
+	public Collection<Privilege> findPrivilege(Long userId) {
 		String sql = "select privilege from user_privilege where user_id = ?";
 		List<String> priviStrs = jdbcTemplate.queryForList(sql, new Object[] { userId }, String.class);
 		List<Privilege> privileges = new ArrayList<>(priviStrs.size());
@@ -114,8 +115,8 @@ public class UserRepositoryImpl implements UserRepository {
 	 * @param user
 	 */
 	private void addPrivileges(User user) {
-		if (null != user.getPriviliges() && !user.getPriviliges().isEmpty()) {
-			for (Privilege p : user.getPriviliges()) {
+		if (null != user.getPrivileges() && !user.getPrivileges().isEmpty()) {
+			for (Privilege p : user.getPrivileges()) {
 				jdbcTemplate.update("insert into user_privilege (user_id, privilege) values (?,?) ", ps -> {
 					ps.setLong(1, user.getId());
 					ps.setString(2, p.name());
@@ -133,7 +134,7 @@ public class UserRepositoryImpl implements UserRepository {
 		User user = null;
 		if (null != list && !list.isEmpty()) {
 			user = list.get(0);
-			user.getPriviliges().addAll(findPrivilege(user.getId()));
+			user.getPrivileges().addAll(findPrivilege(user.getId()));
 		}
 		return user;
 	}
@@ -150,7 +151,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 		List<User> list = jdbcTemplate.query(sql, params, userRowMapper);
 		for (User user : list) {
-			user.getPriviliges().addAll(findPrivilege(user.getId()));
+			user.getPrivileges().addAll(findPrivilege(user.getId()));
 		}
 		return list;
 	}
@@ -169,7 +170,7 @@ public class UserRepositoryImpl implements UserRepository {
 	public User findUserById(Long id) {
 		User user = jdbcTemplate.queryForObject("select * from user_ where id= ? ", new Object[]{id}, userRowMapper);
 		if(null != user){
-			user.getPriviliges().addAll(findPrivilege(user.getId()));
+			user.getPrivileges().addAll(findPrivilege(user.getId()));
 		}
 		return user;
 	}
@@ -180,12 +181,26 @@ public class UserRepositoryImpl implements UserRepository {
 		if(null != users && !users.isEmpty()){
 			User user = users.get(0);
 			if(null != user){
-				user.getPriviliges().addAll(findPrivilege(user.getId()));
+				user.getPrivileges().addAll(findPrivilege(user.getId()));
 			}
 			return user;
 			
 		}
 		return null;
+	}
+
+	@Override
+	public void deleteUserById(Long id) {
+		try {
+			jdbcTemplate.update("delete  from user_ where id = ?", ps -> {
+				ps.setLong(1, id);
+			});
+			jdbcTemplate.update("delete  from user_privilege where user_id = ?", ps -> {
+				ps.setLong(1, id);
+			});
+		} catch (DataAccessException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

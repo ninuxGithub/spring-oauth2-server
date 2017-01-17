@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 import com.hundsun.oauth.domain.Privilege;
 import com.hundsun.oauth.domain.User;
+import com.hundsun.oauth.utils.GuidGenerator;
 import com.hundsun.oauth.utils.PasswordHandler;
 
 public class UserFormDto extends UserDto {
@@ -22,7 +23,7 @@ public class UserFormDto extends UserDto {
 		this.username = user.getUsername();
 		this.phone = user.getPhone();
 		this.email = user.getEmail();
-		this.privileges = user.getPriviliges();
+		this.privileges = user.getPrivileges();
 		this.createTime = user.getCreateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 		this.password = user.getPassword();
 	}
@@ -42,13 +43,17 @@ public class UserFormDto extends UserDto {
 	public User newUser() {
 		User user = new User();
 		user.setId(getId());
-		user.setGuid(getGuid());
+		if(null == getGuid()){
+			user.setGuid(GuidGenerator.generate());
+		}else{
+			user.setGuid(getGuid());
+		}
 		user.setClientId(getClientId());
 		user.setUsername(getUsername());
 		user.setPhone(getPhone());
 		user.setPassword(PasswordHandler.md5(getPassword()));
 		user.setEmail(getEmail());
-		user.getPriviliges().addAll(getPrivileges());
+		user.getPrivileges().addAll(getPrivileges());
 		return user;
 
 	}
