@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<div ng-app>
+<div ng-app="test_client">
     <a href="${pageContext.request.contextPath}/success">Home</a>
 
     <h2>Test [${clientDetailsDto.clientId}]</h2>
@@ -151,14 +151,15 @@
 </div>
 
 <script>
-    var TestClientCtrl = ["$scope", function ($scope) {
+	angular.module('test_client', [])
+		.controller('TestClientCtrl',["$scope", function ($scope) {
         $scope.clientId = "${clientDetailsDto.clientId}";
         $scope.clientSecret = "${clientDetailsDto.clientSecret}";
         $scope.scope = "${clientDetailsDto.scopeWithBlank}";
 
         <c:if test="${empty clientDetailsDto.webServerRedirectUri}" var="eptRedUri">
         $scope.implicitRedirectUri = location.href;
-        $scope.redirectUri = "http://localhost:8080/spring-oauth-server/unity/dashboard";
+        $scope.redirectUri = "http://localhost:8080/spring-oauth2-server/unity/dashboard";
         </c:if>
         <c:if test="${not eptRedUri}">
         $scope.implicitRedirectUri = "${clientDetailsDto.webServerRedirectUri}";
@@ -170,7 +171,7 @@
         //a temp value
         $scope.refreshToken = "1156ebfe-e303-4572-9fb5-4459a5d46610";
 
-    }];
+    }]);
 </script>
 </body>
 </html>

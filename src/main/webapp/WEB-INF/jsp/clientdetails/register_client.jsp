@@ -14,7 +14,7 @@
 
 	<h2>注册client</h2>
 
-	<div ng-app>
+	<div ng-app="register_client">
 		<p class="help-block">
 			若对Oauth的
 			<code>client_details</code>
@@ -247,13 +247,15 @@
 	</div>
 
 	<script>
-		var RegisterClientCtrl = [ "$scope", function($scope) {
+		angular.module('register_client', [])
+			.controller('RegisterClientCtrl', [ "$scope", function($scope) {
 			$scope.visible = false;
 
 			$scope.showMore = function() {
 				$scope.visible = !$scope.visible;
 			};
 		} ];
+		
 	</script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 
 	<h2>更新client</h2>
 
-	<div ng-app>
+	<div ng-app="update_client">
 
 		<div ng-controller="UpdateClientCtrl">
 			<form:form action="${pageContext.request.contextPath}/submitUpdate"
@@ -240,13 +240,15 @@
 	</div>
 
 	<script>
-		var UpdateClientCtrl = [ "$scope", function($scope) {
+
+		angular.module('update_client', [])
+			.controller('UpdateClientCtrl', [ "$scope", function($scope) {
 			$scope.visible = false;
 
 			$scope.showMore = function() {
 				$scope.visible = !$scope.visible;
 			};
-		} ];
+		} ]);
 	</script>
 </body>
 </html>

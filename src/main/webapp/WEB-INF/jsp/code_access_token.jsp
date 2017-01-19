@@ -14,7 +14,7 @@
 <br/>
 
 
-<div ng-app class="panel panel-default">
+<div ng-app="code_access_token" class="panel panel-default">
     <div class="panel-heading">步骤2: <code>用 'code' 换取 'access_token'</code></div>
     <div class="panel-body">
         <div ng-controller="CodeAccessTokenCtrl" class="col-md-10">
@@ -103,7 +103,8 @@
 </div>
 
 <script>
-    var CodeAccessTokenCtrl = ['$scope', function ($scope) {
+		angular.module('code_access_token', []).
+			controller('CodeAccessTokenCtrl', ['$scope', function ($scope) {
         $scope.accessTokenUri = '${accessTokenDto.accessTokenUri}';
         $scope.grantType = '${accessTokenDto.grantType}';
         $scope.clientId = 'mobile-client';
@@ -117,7 +118,7 @@
         $scope.showParams = function () {
             $scope.visible = !$scope.visible;
         };
-    }];
+    }]);
 </script>
 
 </body>
