@@ -240,7 +240,6 @@
 	</div>
 
 	<script>
-
 		angular.module('update_client', [])
 			.controller('UpdateClientCtrl', [ "$scope", function($scope) {
 			$scope.visible = false;

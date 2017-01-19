@@ -137,4 +137,19 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findPrivilege(id);
 	}
 
+	@Override
+	public User findUserByGuid(String guid) {
+		return userRepository.findByGuid(guid);
+	}
+
+	@Override
+	public void changePassword(UserFormDto userForm) {
+		userRepository.changePassword(userForm);
+	}
+
+	@Override
+	public User findUserById(Long id) {
+		return userRepository.findUserById(id);
+	}
+
 }

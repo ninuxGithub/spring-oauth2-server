@@ -101,6 +101,8 @@ public class UserController {
 	public String toUpdate(@PathVariable("id") Long id, Model model) {
 		UserFormDto formDto = userService.loadUserFormDtoById(id);
 		model.addAttribute("formDto", formDto);
+		
+		System.err.println(formDto);
 		// add role choose selections
 		List<Tag> tags = new ArrayList<>();
 		for (Privilege p : Privilege.values()) {

@@ -4,24 +4,7 @@
 <head>
 	<title>authorization_code</title>
 	<script src="${pageContext.request.contextPath}/resources/angular.min.js"></script>
-	<script type="text/javascript">
-		angular.module('auth_code_app', []).
-			controller('AuthorizationCodeCtrl',[ '$scope', function($scope) {
-			$scope.userAuthorizationUri = '${userAuthorizationUri}';
-			$scope.responseType = 'code';
-			$scope.scope = 'read write';
-
-			$scope.clientId = '${clientId}';
-			$scope.redirectUri = '${host}authorization_code_callback';
-			$scope.state = '${state}';
-
-			$scope.visible = false;
-
-			$scope.showParams = function() {
-				$scope.visible = !$scope.visible;
-			};
-		}] );
-	</script>
+	
 </head>
 <body>
 	<a href="${pageContext.request.contextPath}/success">Home</a>
@@ -122,6 +105,23 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+		angular.module('auth_code_app', []).
+			controller('AuthorizationCodeCtrl',[ '$scope', function($scope) {
+			$scope.userAuthorizationUri = '${userAuthorizationUri}';
+			$scope.responseType = 'code';
+			$scope.scope = 'read write';
 
+			$scope.clientId = '${clientId}';
+			$scope.redirectUri = '${host}authorization_code_callback';
+			$scope.state = '${state}';
+
+			$scope.visible = false;
+
+			$scope.showParams = function() {
+				$scope.visible = !$scope.visible;
+			};
+		}] );
+	</script>
 </body>
 </html>

@@ -13,12 +13,14 @@ public class UserFormDto extends UserDto {
 
 	private String password;
 
+	private String repassword;
+
 	public UserFormDto() {
 	}
-	
-	public UserFormDto(User user){
+
+	public UserFormDto(User user) {
 		this.clientId = user.getClientId();
-		this.id=user.getId();
+		this.id = user.getId();
 		this.guid = user.getGuid();
 		this.username = user.getUsername();
 		this.phone = user.getPhone();
@@ -36,6 +38,14 @@ public class UserFormDto extends UserDto {
 		this.password = password;
 	}
 
+	public String getRepassword() {
+		return repassword;
+	}
+
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
+	}
+
 	public Privilege[] getAllPrivileges() {
 		return new Privilege[] { Privilege.MOBILE, Privilege.UNITY };
 	}
@@ -43,9 +53,9 @@ public class UserFormDto extends UserDto {
 	public User newUser() {
 		User user = new User();
 		user.setId(getId());
-		if(null == getGuid()){
+		if (null == getGuid()) {
 			user.setGuid(GuidGenerator.generate());
-		}else{
+		} else {
 			user.setGuid(getGuid());
 		}
 		user.setClientId(getClientId());
@@ -62,7 +72,5 @@ public class UserFormDto extends UserDto {
 	public String toString() {
 		return "UserFormDto [password=" + password + "]" + super.toString();
 	}
-	
-	
 
 }

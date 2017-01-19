@@ -68,4 +68,10 @@ public interface UserService extends UserDetailsService {
 
 	Collection<? extends Privilege> findPrivilege(Long id);
 
+	User findUserByGuid(String guid);
+
+	void changePassword(UserFormDto userForm);
+
+	User findUserById(Long id);
+
 }

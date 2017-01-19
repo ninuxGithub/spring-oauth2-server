@@ -54,6 +54,15 @@
 					</span>
 				</p>
 			</li>
+			<li>
+				<p>
+					<a href="${contextPath}/mobile/toUpdate">Modify Password</a> 
+					<span
+						class="text-muted">- Mobile资源(resource), 需要具有 [ROLE_MOBILE]
+						权限(resourceId: <mark>mobile-resource</mark>才能访问
+					</span>
+				</p>
+			</li>
 		</ul>
 	</div>
 </body>

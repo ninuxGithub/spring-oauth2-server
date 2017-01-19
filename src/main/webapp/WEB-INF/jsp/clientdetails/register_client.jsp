@@ -254,7 +254,7 @@
 			$scope.showMore = function() {
 				$scope.visible = !$scope.visible;
 			};
-		} ];
+		} ]);
 		
 	</script>
 </body>

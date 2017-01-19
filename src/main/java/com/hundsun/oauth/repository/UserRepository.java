@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hundsun.oauth.domain.Privilege;
 import com.hundsun.oauth.domain.User;
+import com.hundsun.oauth.dto.UserFormDto;
 
 /**
  * @description: user 对象中的guid是唯一的 可以根据guid进行用户的唯一区分
@@ -47,5 +48,8 @@ public interface UserRepository extends Repository<User> {
 	void deleteUserById(Long id);
 
 	Collection<? extends Privilege> findPrivilege(Long id);
+
+	void changePassword(UserFormDto userForm);
+
 
 }

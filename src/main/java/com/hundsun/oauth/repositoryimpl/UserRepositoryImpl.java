@@ -16,8 +16,10 @@ import org.springframework.stereotype.Repository;
 import com.hundsun.oauth.constant.CacheConstants;
 import com.hundsun.oauth.domain.Privilege;
 import com.hundsun.oauth.domain.User;
+import com.hundsun.oauth.dto.UserFormDto;
 import com.hundsun.oauth.repository.UserRepository;
 import com.hundsun.oauth.rowmapper.UserRowMapper;
+import com.hundsun.oauth.utils.PasswordHandler;
 
 @Repository("userRepositoryImpl")
 public class UserRepositoryImpl extends RepositoryImpl<User> implements UserRepository {
@@ -201,6 +203,14 @@ public class UserRepositoryImpl extends RepositoryImpl<User> implements UserRepo
 		} catch (DataAccessException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public void changePassword(UserFormDto userForm) {
+		jdbcTemplate.update("update user_ set password = ? where id =?",ps->{
+			ps.setString(1, PasswordHandler.md5(userForm.getRepassword()));
+			ps.setLong(2, userForm.getId());
+		});
 	}
 
 }
