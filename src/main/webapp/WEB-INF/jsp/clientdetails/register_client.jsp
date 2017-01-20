@@ -247,7 +247,7 @@
 	</div>
 
 	<script>
-		angular.module('register_client', [])
+		var register_client= angular.module('register_client', [])
 			.controller('RegisterClientCtrl', [ "$scope", function($scope) {
 			$scope.visible = false;
 

@@ -103,7 +103,7 @@
 </div>
 
 <script>
-		angular.module('code_access_token', []).
+		var code_access_token = angular.module('code_access_token', []).
 			controller('CodeAccessTokenCtrl', ['$scope', function ($scope) {
         $scope.accessTokenUri = '${accessTokenDto.accessTokenUri}';
         $scope.grantType = '${accessTokenDto.grantType}';

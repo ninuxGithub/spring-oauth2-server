@@ -1,3 +1,8 @@
+
+
+
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE HTML>
 <html>
@@ -106,7 +111,7 @@
 		</div>
 	</div>
 <script type="text/javascript">
-		angular.module('auth_code_app', []).
+ 		var auth_code_app = angular.module('auth_code_app', []).
 			controller('AuthorizationCodeCtrl',[ '$scope', function($scope) {
 			$scope.userAuthorizationUri = '${userAuthorizationUri}';
 			$scope.responseType = 'code';

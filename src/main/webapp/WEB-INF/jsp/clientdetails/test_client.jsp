@@ -151,7 +151,7 @@
 </div>
 
 <script>
-	angular.module('test_client', [])
+	var test_client =angular.module('test_client', [])
 		.controller('TestClientCtrl',["$scope", function ($scope) {
         $scope.clientId = "${clientDetailsDto.clientId}";
         $scope.clientSecret = "${clientDetailsDto.clientSecret}";
